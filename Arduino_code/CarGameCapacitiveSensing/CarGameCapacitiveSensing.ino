@@ -26,9 +26,13 @@ void loop()
     //printOutputs(start, left, right); // for debugging
     
     if ((left > 1000) && !(right > 1000)){
+      if (counter > 0){
       counter -= 1;
+      }
     } else if (!(left > 1000) && (right > 1000)){
-      counter++;
+      if (counter < 200){
+        counter++;
+      }
     }
     
     Serial.print("X");
