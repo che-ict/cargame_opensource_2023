@@ -49,16 +49,22 @@ func loadPicture(path string) (pixel.Picture, error) {
 // Displays game over text
 func DisplayGameOverText(dodged int) {
 	basicTxt.Clear()
-	basicTxt.Color = colornames.Royalblue
-	line := fmt.Sprintf("You have dodged %d cars", dodged)
-	//line := fmt.Sprintf("Game Over! You have dodged %d cars", int(dodgedCars))
+	basicTxt.Color = colornames.Darkcyan
+	line := fmt.Sprintf("Je hebt %d auto's ontweken", dodged)
 
 	fmt.Fprintln(basicTxt, "Game over!")
 	fmt.Fprintf(basicTxt, line)
-	//basicTxt.Dot.X -= basicTxt.BoundsOf(line).W() / 2
+
 	basicTxt.Dot.X -= (basicTxt.BoundsOf(line).W() / 2)
 	basicTxt.Draw(gs.S.Win, pixel.IM.Scaled(basicTxt.Dot, 3))
-	//basicTxt.Draw(win, pixel.IM)
+
+	basicTxt.Clear()
+	lineSpace := "Druk op de spatiebalk om opnieuw te spelen"
+	fmt.Fprintln(basicTxt, lineSpace)
+	fmt.Fprintln(basicTxt, "Typ CTRL+C om het spel te sluiten")
+	basicTxt.Dot.X += (basicTxt.BoundsOf(lineSpace).W() - 50)
+	basicTxt.Dot.Y += basicTxt.BoundsOf(line).H() + 100
+	basicTxt.Draw(gs.S.Win, pixel.IM.Scaled(basicTxt.Dot, 2.7))
 }
 
 // Scales the car img to a smaller size. Based on the global variable carScale
